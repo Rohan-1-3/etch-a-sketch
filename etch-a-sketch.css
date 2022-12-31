@@ -7,8 +7,11 @@
     width: 700px;
   }
   
-#grid-item {
+.grid-item {
     padding: 40%;
-    border: 1px solid #ddd;
-    background-color: red;
 }
+
+.grid-item-onHover{
+  background-color: black;
+}
+

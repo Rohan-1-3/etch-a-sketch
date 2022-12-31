@@ -11,19 +11,32 @@ function makeRows(rows, cols) {
   container.style.setProperty('--grid-cols', cols);
   for (c = 0; c < (rows * cols); c++) {
     let cell = document.createElement("div");
-    container.appendChild(cell).id = "grid-item";
+    container.appendChild(cell).className = "grid-item"
   };
 };
-
+//Initial Grid size
+makeRows(16,16)
+onHoverColorChange();
 //GridSize Accr to Users Choice
 function gridSize(){
   document.getElementById('container').textContent = '';//removes previous grid size
   const gridSize = document.querySelector('select').value;
   
   makeRows(gridSize, gridSize);
+  onHoverColorChange();
+}
+
+function onHoverColorChange(){
+  const gridItems = document.querySelectorAll('.grid-item');
+  gridItems.forEach((gridItem)=>{
+    gridItem.addEventListener('mouseover', ()=>{
+      gridItem.className= 'grid-item-onHover';
+    })
+  })
 }
 
 
 //Divs Change color
+
 
 

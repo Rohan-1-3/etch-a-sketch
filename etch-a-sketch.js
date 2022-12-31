@@ -37,6 +37,16 @@ function colorChange(){
   })
 }
 
+//Adding Eraser
+function eraser(){
+  const gridItems = document.querySelectorAll('.grid-item');
+  gridItems.forEach((gridItem)=>{
+    gridItem.addEventListener('mouseover', ()=>{
+      gridItem.style.backgroundColor = 'white';
+    })
+  })
+}
+
 //Grid Change into random color
 function rainbowColorChange(){
   function rgbRandom(){

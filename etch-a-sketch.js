@@ -57,7 +57,7 @@ function rainbowColorChange(){
 
 //Remove the sketch in current grid
 function resetGrid(){
-  gridSize()
+  gridSize();
 }
 
 

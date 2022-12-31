@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="etch-a-sketch.css">
 </head>
 <body>
+    <h1>Etch A Sketch</h1>
     <label for="grid">Select Your Grid Size</label>
     <div class="grid">
         <select name="age" id="selectGridSize" onchange="gridSize()"></select>
-        <input type="button" onclick="colorChange()" value="Default">
-        <input type="button" onclick="rainbowColorChange()" value="Rainbow">
-        <button onclick="resetGrid()">Reset</button>
+        <input type="button" onclick="colorChange()" value="Default" style="background-color: black; color: white;">
+        <input type="button" onclick="rainbowColorChange()" value="Rainbow" style="background-color:brown; color: white;">
+        <input type="button" onclick="resetGrid()" value="Reset" style="background-color: red; color: white;"></input>
     </div>
 
     <div id="container">

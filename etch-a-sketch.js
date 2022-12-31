@@ -1,6 +1,6 @@
 //GridSize Options
 var selectGridSize = document.getElementById("selectGridSize");
-for (let i = 1; i <= 64; i++){
+for (let i = 64; i >= 1; i--){
   selectGridSize.innerHTML += "<option>" + i + "</option>";
 }
 
@@ -14,18 +14,20 @@ function makeRows(rows, cols) {
     container.appendChild(cell).className = "grid-item"
   };
 };
+
 //Initial Grid size
-makeRows(16,16)
+makeRows(64,64)
 onHoverColorChange();
+
 //GridSize Accr to Users Choice
 function gridSize(){
   document.getElementById('container').textContent = '';//removes previous grid size
   const gridSize = document.querySelector('select').value;
-  
   makeRows(gridSize, gridSize);
   onHoverColorChange();
 }
 
+//Divs Change color
 function onHoverColorChange(){
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((gridItem)=>{
@@ -35,8 +37,9 @@ function onHoverColorChange(){
   })
 }
 
-
-//Divs Change color
-
+//Remove the sketch in current grid
+function resetGrid(){
+  gridSize()
+}
 
 

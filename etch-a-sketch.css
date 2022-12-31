@@ -12,10 +12,7 @@
     padding: 40%;
 }
 
-.grid-item-onHover{
-  background-color: black;
-}
-
 .grid{
-  display: block;
+  display: grid;
+  grid-template-columns: min-content;
 }

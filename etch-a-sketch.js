@@ -17,24 +17,42 @@ function makeRows(rows, cols) {
 
 //Initial Grid size
 makeRows(64,64)
-onHoverColorChange();
+colorChange();
 
 //GridSize Accr to Users Choice
 function gridSize(){
   document.getElementById('container').textContent = '';//removes previous grid size
   const gridSize = document.querySelector('select').value;
   makeRows(gridSize, gridSize);
-  onHoverColorChange();
+  colorChange();
 }
 
-//Divs Change color
-function onHoverColorChange(){
+//Grid Change color to black
+function colorChange(){
   const gridItems = document.querySelectorAll('.grid-item');
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener('mouseover', ()=>{
-      gridItem.className= 'grid-item-onHover';
+      gridItem.style.backgroundColor = 'black';
     })
   })
+}
+
+//Grid Change into random color
+function rainbowColorChange(){
+  function rgbRandom(){
+    return Math.floor((Math.random()*255)+1);
+  }
+  const gridItems = document.querySelectorAll('.grid-item');
+  gridItems.forEach((gridItem)=>{
+    gridItem.addEventListener('mouseover', ()=>{
+      const rgbValue1= rgbRandom();
+      const rgbValue2 = rgbRandom();
+      const rgbValue3 = rgbRandom();
+      const finalRGB = `rgb(${rgbValue1},${rgbValue2},${rgbValue3})`//gets randome rgb value
+      gridItem.style.backgroundColor = finalRGB;
+    })
+  })
+
 }
 
 //Remove the sketch in current grid

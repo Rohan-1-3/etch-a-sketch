@@ -21,6 +21,11 @@ h1{
   right: 26%;
   bottom: 75%;
 }
+
+label{
+  font-size: 30px;
+  font-style: italic;
+}
 .grid-item {
   padding: 40%;
 }

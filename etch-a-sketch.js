@@ -1,11 +1,16 @@
 // GridSize Options
 const selectGridSize = document.getElementById("selectGridSize");
-for (let i = 64; i >= 1; i--){
-  selectGridSize.innerHTML += `<option>${  i  }</option>`;
+const container = document.getElementById("container");
+const defaultButton = document.querySelector(".default");
+const rainbowButton = document.querySelector(".rainbow");
+const eraserButton = document.querySelector(".eraser");
+const resetButton = document.querySelector(".reset")
+
+for (let i = 64; i >= 1; i-=1){
+  selectGridSize.innerHTML += `<option>${i}</option>`;
 }
 
 // Making Grids Div
-const container = document.getElementById("container");
 function makeRows(rows, cols) {
   container.style.setProperty("--grid-rows", rows);
   container.style.setProperty("--grid-cols", cols);
@@ -15,18 +20,6 @@ function makeRows(rows, cols) {
   };
 };
 
-// Initial Grid size
-makeRows(64,64)
-colorChange();
-
-// GridSize Accr to Users Choice
-function gridSize(){
-  document.getElementById("container").textContent = "";// removes previous grid size
-  const gridSize = document.querySelector("select").value;
-  makeRows(gridSize, gridSize);
-  colorChange();
-}
-
 // Grid Change color to black
 function colorChange(){
   const gridItems = document.querySelectorAll(".grid-item");
@@ -35,6 +28,14 @@ function colorChange(){
       gridItem.style.backgroundColor = "black";
     })
   })
+}
+
+// GridSize Accr to Users Choice
+function gridSize(){
+  document.getElementById("container").textContent = "";// removes previous grid size
+  const gridSize = document.querySelector("select").value;
+  makeRows(gridSize, gridSize);
+  colorChange();
 }
 
 // Adding Eraser
@@ -69,5 +70,12 @@ function rainbowColorChange(){
 function resetGrid(){
   gridSize();
 }
+// Initial Grid size
+makeRows(64,64)
+colorChange();
 
+defaultButton.addEventListener("click", colorChange);
+rainbowButton.addEventListener("click", rainbowColorChange);
+eraserButton.addEventListener("click", eraser);
+resetButton.addEventListener("click", resetGrid);
 

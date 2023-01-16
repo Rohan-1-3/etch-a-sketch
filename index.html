@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch A Sketch</title>
-    <link rel="stylesheet" href="etch-a-sketch.css">
+    <link rel="stylesheet" href="./etch-a-sketch.css">
 </head>
 <body>
     <h1>Etch A Sketch</h1>
@@ -13,6 +13,7 @@
     <div class="grid">
         <select name="age" id="selectGridSize" onchange="gridSize()"></select>
         <input type="button" class="default" value="Default" style="background-color: black; color: white;">
+        <input type="color" id="color-picker">
         <input type="button" class="rainbow" value="Rainbow" style="background-color:brown; color: white;">
         <input type="button" class="eraser" value="Eraser">
         <input type="button" class="reset" value="Reset" style="background-color: red; color: white;">
@@ -21,6 +22,6 @@
 
     <div id="container">
     </div> 
-    <script src="etch-a-sketch.js"></script>
+    <script src="./etch-a-sketch.js"></script>
 </body>
 </html>

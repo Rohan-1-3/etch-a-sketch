@@ -34,8 +34,7 @@ label{
 .grid{
   display: grid;
   /* grid-template-columns: min-content; */
-  margin-top: 10px;
-  grid-gap: 50%;
+  grid-gap: 30%;
 }
 
 input, select{
@@ -44,4 +43,11 @@ input, select{
   border: 1px solid black;
   cursor: pointer;
   border-radius: 10px;
+}
+
+#color-picker{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  height: 3vw;
 }

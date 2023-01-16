@@ -4,7 +4,8 @@ const container = document.getElementById("container");
 const defaultButton = document.querySelector(".default");
 const rainbowButton = document.querySelector(".rainbow");
 const eraserButton = document.querySelector(".eraser");
-const resetButton = document.querySelector(".reset")
+const resetButton = document.querySelector(".reset");
+const colorPicker = document.querySelector("#color-picker");
 
 for (let i = 64; i >= 1; i-=1){
   selectGridSize.innerHTML += `<option>${i}</option>`;
@@ -14,7 +15,7 @@ for (let i = 64; i >= 1; i-=1){
 function makeRows(rows, cols) {
   container.style.setProperty("--grid-rows", rows);
   container.style.setProperty("--grid-cols", cols);
-  for (let c = 0; c < (rows * cols); c=+1) {
+  for (let c = 0; c < (rows * cols); c+=1) {
     const cell = document.createElement("div");
     container.appendChild(cell).className = "grid-item"
   };
@@ -43,7 +44,16 @@ function eraser(){
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener("mouseover", ()=>{
-      gridItem.style.backgroundColor = "white";
+      gridItem.style.backgroundColor = "";
+    })
+  })
+}
+
+function colorPickedUser(){
+  const gridItems = document.querySelectorAll(".grid-item");
+  gridItems.forEach((gridItem)=>{
+    gridItem.addEventListener("mouseover", ()=>{
+      gridItem.style.backgroundColor = colorPicker.value;
     })
   })
 }
@@ -69,13 +79,18 @@ function rainbowColorChange(){
 // Remove the sketch in current grid
 function resetGrid(){
   gridSize();
+  colorPicker.value = "black";
 }
 // Initial Grid size
 makeRows(64,64)
 colorChange();
 
-defaultButton.addEventListener("click", colorChange);
+defaultButton.addEventListener("click", ()=>{
+  colorPicker.value = "black";
+  colorChange();
+});
 rainbowButton.addEventListener("click", rainbowColorChange);
 eraserButton.addEventListener("click", eraser);
 resetButton.addEventListener("click", resetGrid);
+colorPicker.addEventListener("click", colorPickedUser);
 

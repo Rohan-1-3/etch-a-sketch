@@ -8,20 +8,26 @@
     <link rel="stylesheet" href="./etch-a-sketch.css">
 </head>
 <body>
-    <h1>Etch A Sketch</h1>
-    <label for="grid">Select Your Grid Size</label>
-    <div class="grid">
-        <select name="age" id="selectGridSize" onchange="gridSize()"></select>
-        <input type="button" class="default" value="Default" style="background-color: black; color: white;">
-        <input type="color" id="color-picker">
-        <input type="button" class="rainbow" value="Rainbow" style="background-color:brown; color: white;">
-        <input type="button" class="eraser" value="Eraser">
-        <input type="button" class="reset" value="Reset" style="background-color: red; color: white;">
-        
-    </div>
+    <header>
+        <h1>Etch A Sketch</h1>
+    </header>
 
-    <div id="container">
-    </div> 
+    <main>
+        <div class="grid">
+            <div class="input-slider">
+                <p id="size">8 X 8</p>
+                <input type="range" min="8" max="64" value="8" id= "myRange">
+            </div>
+            <input type="button" class="default" value="Default" style="background-color: black; color: white;">
+            <input type="color" id="color-picker">
+            <input type="button" class="rainbow" value="Rainbow" style="background-color:brown; color: white;">
+            <input type="button" class="eraser" value="Eraser">
+            <input type="button" class="reset" value="Reset" style="background-color: red; color: white;">
+        </div>
+        <div id="container">
+        </div> 
+    </main>
+    
     <script src="./etch-a-sketch.js"></script>
 </body>
 </html>

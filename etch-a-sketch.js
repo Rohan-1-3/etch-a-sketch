@@ -1,15 +1,11 @@
+/* eslint-disable no-param-reassign */
 // GridSize Options
-const selectGridSize = document.getElementById("selectGridSize");
 const container = document.getElementById("container");
 const defaultButton = document.querySelector(".default");
 const rainbowButton = document.querySelector(".rainbow");
 const eraserButton = document.querySelector(".eraser");
 const resetButton = document.querySelector(".reset");
 const colorPicker = document.querySelector("#color-picker");
-
-for (let i = 64; i >= 1; i-=1){
-  selectGridSize.innerHTML += `<option>${i}</option>`;
-}
 
 // Making Grids Div
 function makeRows(rows, cols) {
@@ -21,22 +17,41 @@ function makeRows(rows, cols) {
   };
 };
 
+// draw when user keeps the button clicked and moves
+let isDragging = false;
+container.addEventListener("mousedown", ()=>{
+  isDragging = true;
+});
+container.addEventListener("mouseup", ()=>{
+  isDragging = false;
+});
+
 // Grid Change color to black
 function colorChange(){
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener("mouseover", ()=>{
-      gridItem.style.backgroundColor = "black";
+      if(isDragging){
+        gridItem.style.backgroundColor = "black";
+      }
+      
     })
   })
 }
 
 // GridSize Accr to Users Choice
-function gridSize(){
+function gridSize(size){
   document.getElementById("container").textContent = "";// removes previous grid size
-  const gridSize = document.querySelector("select").value;
-  makeRows(gridSize, gridSize);
+  makeRows(size, size);
   colorChange();
+}
+
+// slider input for changing size
+const slider = document.getElementById("myRange");
+const output = document.getElementById("size");
+slider.oninput = function input(){
+  output.textContent = `${this.value} X ${this.value}`
+  gridSize(this.value);
 }
 
 // Adding Eraser
@@ -44,7 +59,7 @@ function eraser(){
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener("mouseover", ()=>{
-      gridItem.style.backgroundColor = "";
+      if(isDragging) gridItem.style.backgroundColor = "";
     })
   })
 }
@@ -53,7 +68,7 @@ function colorPickedUser(){
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener("mouseover", ()=>{
-      gridItem.style.backgroundColor = colorPicker.value;
+      if(isDragging) gridItem.style.backgroundColor = colorPicker.value;
     })
   })
 }
@@ -66,11 +81,13 @@ function rainbowColorChange(){
   const gridItems = document.querySelectorAll(".grid-item");
   gridItems.forEach((gridItem)=>{
     gridItem.addEventListener("mouseover", ()=>{
+      if(isDragging){
       const rgbValue1= rgbRandom();
       const rgbValue2 = rgbRandom();
       const rgbValue3 = rgbRandom();
       const finalRGB = `rgb(${rgbValue1},${rgbValue2},${rgbValue3})`// gets randome rgb value
       gridItem.style.backgroundColor = finalRGB;
+      }
     })
   })
 
@@ -78,11 +95,11 @@ function rainbowColorChange(){
 
 // Remove the sketch in current grid
 function resetGrid(){
-  gridSize();
+  gridSize(8);
   colorPicker.value = "black";
 }
-// Initial Grid size
-makeRows(64,64)
+
+gridSize(8);
 colorChange();
 
 defaultButton.addEventListener("click", ()=>{
